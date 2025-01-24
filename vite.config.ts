@@ -3,5 +3,5 @@ import { defineConfig } from 'vite';
 
 export default defineConfig({
 	plugins: [sveltekit()],
-	base: process.env.NODE_ENV === 'production' ? '/cc-svelte/' : '/'
+	// Remove the base configuration from here as it's handled in svelte.config.js
 });

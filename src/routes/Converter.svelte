@@ -21,19 +21,36 @@
 
     //function to run onmount to fetch data from the API
 	onMount(async () => {
-		const response = await fetch(`https://v6.exchangerate-api.com/v6/${apiKey}/codes`);
-		const data = await response.json();
-		currencies = data.supported_codes;
+		try {
+			const response = await fetch(`https://v6.exchangerate-api.com/v6/${apiKey}/codes`);
+			if (!response.ok) {
+				throw new Error('Failed to fetch currency codes');
+			}
+			const data = await response.json();
+			currencies = data.supported_codes;
+		} catch (error) {
+			console.error('Error fetching currency codes:', error);
+			currencies = []; // Set to empty array on error
+		}
 	});
 
     //function to convert the currency using an API call
 	async function convertCurrency() {
 		if (canConvert) {
-			const response = await fetch(
-				`https://v6.exchangerate-api.com/v6/${apiKey}/pair/${fromCurrency}/${toCurrency}/${amount}`
-			);
-			const data = await response.json();
-			result = data.conversion_result;
+			try {
+				const response = await fetch(
+					`https://v6.exchangerate-api.com/v6/${apiKey}/pair/${fromCurrency}/${toCurrency}/${amount}`
+				);
+				if (!response.ok) {
+					throw new Error('API request failed');
+				}
+				const data = await response.json();
+				result = data.conversion_result;
+			} catch (error) {
+				console.error('Error converting currency:', error);
+				// Optionally add some user feedback here
+				result = null;
+			}
 		}
 	}
 

@@ -14,7 +14,16 @@ const config = {
 			strict: true
 		}),
 		paths: {
-			base: process.env.NODE_ENV === 'production' ? '/cc-svelte' : ''
+			base: process.env.NODE_ENV === 'production' ? '/cc-svelte' : '',
+			relative: false
+		},
+		prerender: {
+			handleHttpError: ({ path, referrer, message }) => {
+				if (message.includes('Not Found')) {
+					return;
+				}
+				throw new Error(message);
+			}
 		}
 	}
 };
