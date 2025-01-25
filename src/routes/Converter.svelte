@@ -94,9 +94,9 @@
 	}
 </script>
 
-<div class="h-full w-full max-w-3xl space-y-5">
+<div class="h-full w-full max-w-3xl space-y-5 px-4 sm:px-0">
 	<header class="py-4 text-center text-white">
-		<h1 class="text-3xl font-bold">Simple Currency Conversion App</h1>
+		<h1 class="text-2xl sm:text-3xl font-bold">Simple Currency Conversion App</h1>
 	</header>
 
 	<div 
@@ -105,26 +105,26 @@
 		style:height="{containerHeight}px"
 	>
 		<div class="content-wrapper">
-			<div class="grid grid-cols-3 gap-4 p-5">
-				<div class="space-y-3 rounded-lg bg-white p-4 shadow-md">
+			<div class="grid grid-cols-1 sm:grid-cols-3 gap-4 p-3 sm:p-5">
+				<div class="space-y-2 sm:space-y-3 rounded-lg bg-white p-3 sm:p-4 shadow-md">
 					<label for="amount">Enter amount:</label>
 					<input
 						type="number"
 						id="amount"
 						bind:value={amount}
-						class="block w-full rounded-lg border border-slate-950 bg-slate-50 p-2.5 text-sm text-gray-900 hover:cursor-pointer"
+						class="block w-full rounded-lg border border-slate-950 bg-slate-50 p-2 sm:p-2.5 text-sm text-gray-900 hover:cursor-pointer"
 						placeholder=""
 						required
 					/>
 				</div>
 
-				<div class="space-y-3 rounded-lg bg-white p-4 shadow-md">
+				<div class="space-y-2 sm:space-y-3 rounded-lg bg-white p-3 sm:p-4 shadow-md">
 					<label for="convertFrom" class="text-gray-500">From</label>
 					<select
 						name="convertFrom"
 						id="from"
 						bind:value={fromCurrency}
-						class="block w-full rounded-lg border border-slate-950 bg-slate-50 p-2.5 text-sm text-gray-900 hover:cursor-pointer"
+						class="block w-full rounded-lg border border-slate-950 bg-slate-50 p-2 sm:p-2.5 text-sm text-gray-900 hover:cursor-pointer"
 					>
 						{#each currencies as [code, name]}
 							<option value={code}>{name} ({code})</option>
@@ -132,13 +132,13 @@
 					</select>
 				</div>
 
-				<div class="space-y-3 rounded-lg bg-white p-4 shadow-md">
+				<div class="space-y-2 sm:space-y-3 rounded-lg bg-white p-3 sm:p-4 shadow-md">
 					<label for="convertTo" class="text-gray-500">To</label>
 					<select
 						name="convertTo"
 						id="to"
 						bind:value={toCurrency}
-						class="block w-full rounded-lg border border-slate-950 bg-slate-50 p-2.5 text-sm text-gray-900 hover:cursor-pointer"
+						class="block w-full rounded-lg border border-slate-950 bg-slate-50 p-2 sm:p-2.5 text-sm text-gray-900 hover:cursor-pointer"
 					>
 						{#each currencies as [code, name]}
 							<option value={code}>{name} ({code})</option>
@@ -163,15 +163,15 @@
 
 			{#if result !== null}
 				<div
-					class="space-y-4 p-5 text-slate-950"
+					class="space-y-3 sm:space-y-4 p-4 sm:p-5 text-slate-950"
 					in:fly={{ y: 200, duration: 500, opacity: 0 }}
 					out:fly={{ y: -200, duration: 500, opacity: 0 }}
 				>
-					<h3 class="text-2xl font-semibold text-slate-500">
+					<h3 class="text-xl sm:text-2xl font-semibold text-slate-500">
 						{amount}
 						{getCurrencyName(fromCurrency)} =
 					</h3>
-					<h1 class="text-dark text-4xl font-extrabold">{result} {getCurrencyName(toCurrency)}</h1>
+					<h1 class="text-dark text-3xl sm:text-4xl font-extrabold">{result} {getCurrencyName(toCurrency)}</h1>
 				</div>
 			{/if}
 		</div>
