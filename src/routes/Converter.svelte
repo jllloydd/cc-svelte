@@ -102,8 +102,8 @@
 	<div 
 		bind:this={container}
 		class="mx-auto space-y-3 rounded-lg bg-white height-transition"
-		style:height="{containerHeight}px"
-	>
+		style:height="{containerHeight}px" 
+	> <!-- appending the containerHeight state in order to track it reactively -->
 		<div class="content-wrapper">
 			<div class="grid grid-cols-1 sm:grid-cols-3 gap-4 p-3 sm:p-5">
 				<div class="space-y-2 sm:space-y-3 rounded-lg bg-white p-3 sm:p-4 shadow-md">
@@ -152,7 +152,7 @@
 					onclick={result !== null ? reset : convertCurrency}
 					class="mx-auto rounded-lg bg-slate-950 px-3 py-2 text-white hover:cursor-pointer hover:bg-slate-300 hover:text-slate-950"
 					disabled={!canConvert && result === null}
-				>
+				> <!-- button functions to show reset when a conversion result has been taken from the API -->
 					{#if result !== null}
 						Reset
 					{:else}
